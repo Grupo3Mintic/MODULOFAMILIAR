@@ -1,19 +1,22 @@
-// database.js
+// database1.js
 const { Pool } = require("pg");
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const pool = new Pool(
-  process.env.DATABASE_URL
+  isProduction
     ? {
         connectionString: process.env.DATABASE_URL,
-        ssl: { rejectUnauthorized: false }, // importante en Render
+        ssl: {
+          rejectUnauthorized: false
+        }
       }
     : {
-        user: process.env.PGUSER,
-        host: process.env.PGHOST,
-        database: process.env.PGDATABASE,
-        password: process.env.PGPASSWORD,
-        port: process.env.PGPORT,
+        host: "localhost",
+        user: "postgres",             // ← tu usuario local
+        password: "Yulay123*",        // ← tu contraseña local
+        database: "modulofamiliar",   // ← tu nombre de base local
+        port: 5432
       }
 );
-
 module.exports = pool;
