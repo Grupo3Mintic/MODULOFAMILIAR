@@ -6,15 +6,15 @@ const PORT = process.env.PORT || 3000;
 require("dotenv").config();
 
 // Conexión a base de datos
-const db = require("./database");
+const db = require("./server/database");
 
 // Middlewares
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "www")));
 
 // Rutas
-const authRoutes = require("./authRoutes");
-const grupoRoutes = require("./grupoRoutes");
+const authRoutes = require("./server/authRoutes");
+const grupoRoutes = require("./server/grupoRoutes");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/grupo", grupoRoutes);
