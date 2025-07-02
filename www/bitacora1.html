@@ -1,0 +1,23 @@
+<!-- www/bitacora.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bitácora</title>
+</head>
+<body>
+  <h2>Miembros del Grupo</h2>
+  <div id="familia-container"></div>
+  <h3>Bitácora de Salud</h3>
+  <div id="bitacora-container"></div>
+  <script src="js/bitacora.js"></script>
+</body>
+<h3>Registrar Nueva Entrada</h3>
+<form id="formBitacora">
+  <input type="date" name="fecha" required />
+  <input type="text" name="tipo_servicio" placeholder="Tipo de servicio" required />
+  <textarea name="observaciones" placeholder="Observaciones" required></textarea>
+  <button type="submit">Guardar Entrada</button>
+</form>
+</html>
