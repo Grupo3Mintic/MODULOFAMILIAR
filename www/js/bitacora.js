@@ -99,7 +99,7 @@ form.onsubmit = async e => {
   data.usuario_id = miembroActivoId;
 
   try {
-    const res = await fetch(`${baseURL}/api/grupo/bitacora`, {
+    const res = await fetch(`${baseURL}/api/grupo/bitacora_salud`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
