@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bitácora de Salud</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+    }
+
+    h2, h3 {
+      margin-top: 2rem;
+      color: #2c3e50;
+    }
+
+    .familia-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .miembro {
+      text-align: center;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+
+    .miembro:hover {
+      transform: scale(1.05);
+      background-color: #f0f0f0;
+    }
+
+    #bitacora-container > div {
+      background: #f9f9f9;
+      border-radius: 6px;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid #3498db;
+    }
+
+    form textarea {
+      resize: vertical;
+    }
+
+    form input, form textarea, form button, form select {
+      display: block;
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    form button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Miembros del Grupo Familiar</h2>
+  <div id="familia-container" class="familia-grid"></div>
+
+  <button onclick="window.location.href='index.html'" style="margin-bottom: 1rem;">
+  ⬅️ Volver al inicio
+</button>
+
+<button onclick="window.location.href='index.html'" 
+  style="position: fixed; bottom: 1rem; right: 1rem; background-color: #3498db; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">
+  🏠 Inicio
+</button>
+
+  <h3>Bitácora de Salud</h3>
+  <div id="bitacora-container"></div>
+
+  <h3>Registrar Nueva Entrada</h3>
+  <form id="formBitacora">
+    <input type="date" name="fecha" required />
+    <input type="text" name="tipo_servicio" placeholder="Tipo de servicio (ej. Vacuna, Consulta)" required />
+    <textarea name="observaciones" placeholder="Observaciones" rows="3" required></textarea>
+    <button type="submit">Guardar Entrada</button>
+  </form>
+
+  <script src="js/bitacora.js"></script>
+</body>
+</html>

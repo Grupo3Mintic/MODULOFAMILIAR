@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2em;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 300px;
+      gap: 1em;
+    }
+    input, button {
+      font-size: 1em;
+      padding: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <h2>Iniciar Sesión</h2>
+  <form id="formLogin">
+    <input type="email" name="correo" placeholder="Correo" required />
+    <input type="password" name="clave" placeholder="Contraseña" required />
+    <button type="submit">Ingresar</button>
+  </form>
+
+  <script>
+    const baseURL = window.location.hostname.includes("localhost")
+      ? "http://localhost:3000"
+      : "https://modulofamiliar.onrender.com"; // 👈 reemplaza con tu URL de backend real
+
+    document.getElementById("formLogin").onsubmit = async e => {
+      e.preventDefault();
+
+      const data = Object.fromEntries(new FormData(e.target));
+      console.log("Enviando login a:", `${baseURL}/api/auth/login`);
+
+      try {
+        const res = await fetch(`${baseURL}/api/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          const user = await res.json();
+          console.log("Login exitoso:", user);
+          localStorage.setItem("usuario", JSON.stringify(user));
+          window.location.href = "index.html";
+        } else {
+          const error = await res.text();
+          alert(error || "Correo o contraseña inválidos.");
+        }
+      } catch (err) {
+        console.error("❌ Error de red:", err);
+        alert("No se pudo contactar con el servidor.");
+      }
+    };
+  </script>
+</body>
+</html>

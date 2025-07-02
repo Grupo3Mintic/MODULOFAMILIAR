@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro de Usuario</title>
+</head>
+<body>
+
+  <h2>Registro de Usuario</h2>
+
+ <!-- <form id="formRegistro">
+    <input type="text" name="nombre" placeholder="Nombre completo" required />
+    
+    <input type="email" name="correo" placeholder="Correo electrónico" required />
+    
+    <input type="password" name="clave" placeholder="Contraseña" required />
+    
+     Este puede venir de un valor asignado en otro paso, por ahora valor fijo 
+    <input type="hidden" name="grupo_familiar_id" value="1" />
+    
+    <!-- Campo oculto o por defecto para el avatar 
+    <input type="hidden" name="avatar" value="avatar_generico.png" />
+    
+    <button type="submit">Registrarse</button>
+  </form> -->
+
+  <form id="formRegistro">
+  <input type="text" name="nombre" placeholder="Nombre completo" required />
+
+  <input type="email" name="correo" placeholder="Correo electrónico" required />
+
+  <input type="password" name="clave" placeholder="Contraseña" required />
+
+  <input type="number" name="edad" placeholder="Edad" required min="0" />
+
+  <select name="genero" required>
+    <option value="">Selecciona género</option>
+    <option value="masculino">Masculino</option>
+    <option value="femenino">Femenino</option>
+  </select>
+
+  <input type="hidden" name="grupo_familiar_id" value="1" />
+
+  <button type="submit">Registrarse</button>
+</form>
+
+  <script src="js/registro.js"></script>
+</body>
+</html>
