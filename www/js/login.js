@@ -2,7 +2,7 @@
 
 // Detecta si está en local o en la web
 const baseURL = window.location.hostname.includes("localhost")
-  ? "http://localhost:3000" // uso en desarrollo local
+ // ? "http://localhost:3000" // uso en desarrollo local
   : "https://modulofamiliar.onrender.com"; // REEMPLAZA con la URL real de tu backend
 
 document.getElementById("formLogin").onsubmit = async e => {
