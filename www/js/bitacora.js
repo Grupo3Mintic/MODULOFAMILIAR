@@ -8,7 +8,8 @@ if (!user) {
 // 🌐 Detecta si está en local o en servidor
 const baseURL = window.location.hostname.includes("localhost")
   ? "http://localhost:3000"
-  : "https://modulo-api.onrender.com";
+  : "https://modulofamiliar.onrender.com"; // REEMPLAZA con la URL real de tu backend
+  
 
 // Elementos del DOM
 const contenedor = document.getElementById("familia-container");
