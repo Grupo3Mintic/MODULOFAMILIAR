@@ -1,38 +1,50 @@
 // login.js
 
-// Detecta si está en local o en la web
-const baseURL = window.location.hostname.includes("localhost")
- // ? "http://localhost:3000" // uso en desarrollo local
-  : "https://modulofamiliar.onrender.com"; // REEMPLAZA con la URL real de tu backend
+// Detecta si está en desarrollo local o producción
+const dev = false; // cámbialo a true solo si estás en localhost
 
-document.getElementById("formLogin").onsubmit = async e => {
+const baseURL = dev
+  ? "http://localhost:3000"
+  : "https://modulofamiliar.onrender.com"; // URL del backend en Render
+
+document.getElementById("formLogin").onsubmit = async (e) => {
   e.preventDefault();
 
   const data = Object.fromEntries(new FormData(e.target));
-  console.log("Enviando datos de login:", data);
+  console.log("🔐 Enviando datos de login:", data);
 
   try {
     const res = await fetch(`${baseURL}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
 
-    console.log("Código de respuesta:", res.status);
+    console.log("📡 Código de respuesta:", res.status);
+
+    const contentType = res.headers.get("content-type");
 
     if (res.ok) {
-      const user = await res.json();
-      console.log("Login exitoso:", user);
+      // ✅ Si la respuesta es exitosa y es JSON
+      const user = contentType?.includes("application/json")
+        ? await res.json()
+        : { mensaje: await res.text() };
 
-      // Guarda al usuario en localStorage y redirige
+      console.log("✅ Login exitoso:", user);
       localStorage.setItem("usuario", JSON.stringify(user));
       window.location.href = "index.html";
+
     } else {
-      const error = await res.text();
-      alert(error || "Correo o contraseña inválidos.");
+      // ⚠️ Si la respuesta es error, intentamos leer JSON o texto
+      const errorMsg = contentType?.includes("application/json")
+        ? (await res.json()).error
+        : await res.text();
+
+      alert(errorMsg || "Correo o contraseña inválidos.");
     }
+
   } catch (err) {
-    console.error("Error al conectar con el servidor:", err);
-    alert("❌ No se pudo contactar con el servidor.");
+    console.error("❌ Error de red:", err);
+    alert("No se pudo contactar con el servidor.");
   }
 };
